@@ -20,7 +20,8 @@ namespace CarBook.Application.Features.CQRS.Handlers.AboutHandlers
             {
                 AboutID = x.AboutID,
                 Title = x.Title,
-                Description = x.Description
+                Description = x.Description,
+                ImageUrl = x.ImageUrl
             }).ToList();
         }
     }
