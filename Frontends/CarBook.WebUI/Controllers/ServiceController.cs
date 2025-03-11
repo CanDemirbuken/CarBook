@@ -1,31 +1,13 @@
-﻿using CarBook.Dto.ServiceDTOs;
-using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace CarBook.WebUI.Controllers
 {
     public class ServiceController : Controller
     {
-        private readonly IHttpClientFactory _clientFactory;
-
-        public ServiceController(IHttpClientFactory clientFactory)
+        public IActionResult Index()
         {
-            _clientFactory = clientFactory;
-        }
-
-        public async Task<IActionResult> Index()
-        {
-            var client = _clientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7128/api/Services");
-
-            if (responseMessage.IsSuccessStatusCode)
-            {
-                var servicesJson = await responseMessage.Content.ReadAsStringAsync();
-                var services = JsonConvert.DeserializeObject<List<ResultServiceDTO>>(servicesJson);
-
-                return View(services);
-            }
-
+            ViewBag.v1 = "Hizmetlerimiz";
+            ViewBag.v2 = "Hizmetlerimiz";
             return View();
         }
     }
