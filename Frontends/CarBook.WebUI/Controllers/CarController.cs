@@ -1,4 +1,4 @@
-﻿using CarBook.Dto.CarDTOs;
+﻿using CarBook.Dto.CarPricingDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -19,12 +19,12 @@ namespace CarBook.WebUI.Controllers
             ViewBag.v2 = "Aracınızı Seçiniz";
 
             var client = _clientFactory.CreateClient();
-            var responseMessage = await client.GetAsync("https://localhost:7128/api/Cars/GetCarWithBrand");
+            var responseMessage = await client.GetAsync("https://localhost:7128/api/CarPricings");
 
             if (responseMessage.IsSuccessStatusCode)
             {
-                var carssJson = await responseMessage.Content.ReadAsStringAsync();
-                var cars = JsonConvert.DeserializeObject<List<ResultCarWithBrandsDTO>>(carssJson);
+                var carsJson = await responseMessage.Content.ReadAsStringAsync();
+                var cars = JsonConvert.DeserializeObject<List<ResultCarPricingWithCarsDTO>>(carsJson);
 
                 return View(cars);
             }
