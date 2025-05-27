@@ -5,7 +5,7 @@
     <p>@Model.Description</p>
 
     @await Component.InvokeAsync("_BlogDetailsCloudTagByBlogViewComponentPartial", new { id = ViewBag.blogId })
-    @await Component.InvokeAsync("_BlogDetailsAuthorAboutViewComponentPartial")
+    @await Component.InvokeAsync("_BlogDetailsAuthorAboutViewComponentPartial", new { id = ViewBag.blogId })
 
 
     <div class="pt-5 mt-5">

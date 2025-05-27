@@ -23,6 +23,9 @@ namespace CarBook.WebApi.Controllers
         [HttpGet("GetBlogsWithAuthor")]
         public async Task<IActionResult> GetBlogsWithAuthor() => Ok(await _mediator.Send(new GetBlogWithAuthorQuery()));
 
+        [HttpGet("GetBlogByAuthorId")]
+        public async Task<IActionResult> GetBlogByAuthorId(int blogId) => Ok(await _mediator.Send(new GetBlogByAuthorIdQuery(blogId)));
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetBlogById(int id) => Ok(await _mediator.Send(new GetBlogByIdQuery(id)));
 

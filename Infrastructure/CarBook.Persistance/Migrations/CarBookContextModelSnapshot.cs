@@ -295,6 +295,35 @@ namespace CarBook.Persistance.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("CarBook.Domain.Entities.Comment", b =>
+                {
+                    b.Property<int>("CommentID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentID"));
+
+                    b.Property<int>("BlogID")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("CommentID");
+
+                    b.HasIndex("BlogID");
+
+                    b.ToTable("Comments");
+                });
+
             modelBuilder.Entity("CarBook.Domain.Entities.Contact", b =>
                 {
                     b.Property<int>("ContactID")
@@ -587,6 +616,17 @@ namespace CarBook.Persistance.Migrations
                     b.Navigation("Pricing");
                 });
 
+            modelBuilder.Entity("CarBook.Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("CarBook.Domain.Entities.Blog", "Blog")
+                        .WithMany("Comments")
+                        .HasForeignKey("BlogID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Blog");
+                });
+
             modelBuilder.Entity("CarBook.Domain.Entities.TagCloud", b =>
                 {
                     b.HasOne("CarBook.Domain.Entities.Blog", "Blog")
@@ -605,6 +645,8 @@ namespace CarBook.Persistance.Migrations
 
             modelBuilder.Entity("CarBook.Domain.Entities.Blog", b =>
                 {
+                    b.Navigation("Comments");
+
                     b.Navigation("TagClouds");
                 });
 
