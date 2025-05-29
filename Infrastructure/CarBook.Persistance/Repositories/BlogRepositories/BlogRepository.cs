@@ -22,7 +22,7 @@ namespace CarBook.Persistance.Repositories.BlogRepositories
 
         public async Task<List<Blog>> GetBlogsWithAuthorAsync()
         {
-            var blogs = await _context.Blogs.Include(x => x.Author).ToListAsync();
+            var blogs = await _context.Blogs.Include(x => x.Author).Include(y => y.Category).ToListAsync();
             return blogs;
         }
 
