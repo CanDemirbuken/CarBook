@@ -1,8 +1,6 @@
 ﻿using CarBook.Dto.AuthorDTOs;
-using CarBook.Dto.BannerDTOs;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using System.Net.Http;
 using System.Text;
 
 namespace CarBook.WebUI.Areas.Admin.Controllers
